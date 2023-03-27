@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="main-doc">
+      <section class="main-section" id="What_is_Git">
+        <header id="what-is-git">
+          <h2>What is Git</h2>
+        </header>
+        <p>
+          Git is the world's most popular version control system. A
+          <strong>Version Control System</strong> is software that tracks and
+          manages changes to files over time. Version control systems generally
+          allow users to revisit earlier versions of the files, compare changes
+          between versions, undo changes, etc.
+        </p>
+        <p>Git Helps us:</p>
+        <ul>
+          <li>Track changes across multiple files</li>
+          <li>Compare versions of a project</li>
+          <li>"Time travel" back to old versions</li>
+          <li>Revert to a previous version</li>
+          <li>Collaborate and share changes</li>
+          <li>Combine changes of different versions of the same file(s)</li>
+        </ul>
+      </section>
+      <section class="main-section" id="Git_vs_Github">
+        <header id="git-vs-github">
+          <h2>Git vs Github</h2>
+        </header>
+        <p>
+          Git is the version control software that runs locally on your machine.
+          You don't need to register for an account. You don't need the internet
+          to use it. You can use Git without ever touching Github.
+        </p>
+        <p>
+          Git is the version control software that runs locally on your machine.
+          You don't need to register for an account. You don't need the internet
+          to use it. You can use Git without ever touching Github.
+        </p>
+        <p>
+          Github is a hosting platform which allows us to put files online and
+          share it with others so that they can download it and then view(read)
+          or make changes to it.
+        </p>
+        <p>To configure Git name and email use these commands:</p>
+        <pre><code>$ git config -global user.name &lt;your-name&gt;
+$ git config -global user.email &lt;your-email&gt;</code></pre>
+        <p>To check your name and email:</p>
+        <pre><code>$ git config user.name
+$ git config user.email</code></pre>
+      </section>
+      <section class="main-section" id="Creating_Git_Repo">
+        <header id="creating-repo">
+          <h2>Creating Git Repo</h2>
+        </header>
+        <p>
+          To create a Git repo, we go to that directory and use the below
+          command
+        </p>
+        <code>$ git init</code>
+        <p>
+          We can check if its created by using the command 'git status' which
+          gives below message whenever we check for a newly created repo.
+        </p>
+        <code>
+          <pre>
+$ git status 
+On branch master 
+No commits yet nothing to commit(create/copy files and use "git add" to track)</pre
+          >
+        </code>
+      </section>
+      <section class="main-section" id="Git_Commit">
+        <header id="git-commit">
+          <h2>Git Commit</h2>
+        </header>
+        <p>
+          A commit can be considered as taking a 'snapshot' of the repo in its
+          changes a moment in time. In other words, we are creating checkpoints
+          to whatever changes we are making in the repo. In addition we can also
+          add a message to the commit, whenever we make that commit. A typical
+          Git repo has lots of commits. A commit is not the same thing as saving
+          a file. Its something that works on top of saving a file. We have to
+          make changes first and save them to our files before we can even
+          commit. Saving a file has nothing to do with Git. But once we have
+          saved those files, we can group them together into a commit.
+        </p>
+        <p>
+          A commit is actually a multi-step process. We dont just commit.
+          Instead there is an intermediate step where we actually call out the
+          particular changes that we've made that we want to include in a commit
+          i.e we may not want to commit all the changes made in our files but a
+          subset of them. This allows us to selectively make commits.
+        </p>
+        <p>
+          Before making a commit, we need to 'stage' the files using the
+          <span class="inline-code">git add</span> command. <br />For example:
+        </p>
+        <code>
+          <pre>
+$ git add &lt;file1&gt; &lt;file2&gt; ...
+$ git status
+On branch master 
+Changes to be committed
+  (use "git restore --staged &lt;file&gt;..." to unstage"
+          <span>modified:  &lt;file1&gt;
+          modified:  &lt;file2&gt;</span></pre>
+        </code>
+        <p>
+          We then use the <span class="inline-code">git commit</span> command to
+          commit the staged files into the repository.
+        </p>
+        <code>
+          <pre>
+$ git commit -m "commit-message"
+</pre
+          >
+        </code>
+      </section>
+      <section class="main-section" id="Amending_Commits">
+        <header id="amend">
+          <h2>Amending Commits</h2>
+        </header>
+        <p>
+          Suppose you just made a commit and then realized you forgot to include
+          a file. Or, maybe you made a typo in the commit message that you want
+          to correct. Rather than making an all new separate commit, you can
+          "redo" the previous commit using the
+          <span class="inline-code">--amend</span> option. Note that this works
+          only for the last recent commit which you want to fix.
+        </p>
+        <p>
+          By default all the files will be present and we just have to save and
+          close that file to amend our last commit.
+        </p>
+
+        <p class="note">
+          NOTE: We can add and commit in a single command using the below
+          command
+        </p>
+        <code>
+          <pre>
+$ git commit -a -m "message"
+</pre
+          >
+        </code>
+      </section>
+      <section class="main-section" id="Branching">
+        <header id="branching">
+          <h2>Branching</h2>
+        </header>
+        <p>
+          When a team is working on a project, each one is working on separate,
+          and most likely the work of one could conflict with other people's
+          code. This is where branches can be used. Each commit has its own
+          unique hash and each commit references at least one parent commit that
+          came before it.
+        </p>
+        <ul>
+          <li>
+            We can think of branches as alternative timelines for a project.
+          </li>
+          <li>
+            Branches enable us to create separate contexts where we can try new
+            things, or even work multiple ideas in parallel.
+          </li>
+          <li>
+            If we make changes on one branch, they do not impact the other
+            branches (unless we merge the changes).
+          </li>
+        </ul>
+        <p></p>
+      </section>
+      <section class="main-section" id="Master_or_Main">
+        <header id="master-or-main">
+          <h2>Master or Main</h2>
+        </header>
+        <p>
+          Even though we haven't really mentioned so far, in Git we are always
+          working on some branch. And by default we are on the master branch.
+          The master branch is the default branch created when we create a git
+          repo (with git init). It does not do anything special and is just like
+          any other branch. Many people designate the master branch as their
+          "official branch" for their codebase, but that is just a matter of
+          choice. From Git's perspective, the master branch is just like any
+          other branch.
+        </p>
+        <p class="note">
+          NOTE: In 2020, Github renamed the default branch from master to main.
+          The default Git branch name is still master.
+        </p>
+      </section>
+      <section class="main-section" id="Viewing_Branches">
+        <header id="view-branch">
+          <h2>Viewing Branches</h2>
+        </header>
+        <p>
+          The <span class="inline-code">git branch</span> command is used to
+          view your existing branches of your repo. The default branch in every
+          repo is master (though can can configure this). Look for the * which
+          indicates the branch you are currently on.
+        </p>
+        <code>
+          <pre>
+$ git branch
+<span>* master</span></pre>
+        </code>
+        <p></p>
+      </section>
+      <section class="main-section" id="Creating_and_Switching_Branches">
+        <header id="create-switch-branch">
+          <h2>Creating and Switching Branches</h2>
+        </header>
+        <p>
+          Use <span class="inline-code">git branch &lt;branch-name&gt;</span> to
+          make a new branch based upon the current HEAD. This just creates the
+          branch, it does not switch you to that branch (the HEAD stays the
+          same).
+        </p>
+        <p>
+          For example, suppose I create new branch based on the master, called
+          'Bugfix' by using the command
+          <span class="inline-code">git branch Bugfix</span>. The HEAD still
+          points to the master because I have created the new branch 'Bugfix'
+          but have not switched to it yet.
+        </p>
+        <p>
+          To switch to a branch we can use the command
+          <span class="inline-code">git switch &lt;branch-name&gt;</span>
+        </p>
+      </section>
+      <section class="main-section" id="Deleting_and_Renaming_Branches">
+        <header id="delete-rename-branch">
+          <h2>Deleting and Renaming Branches</h2>
+        </header>
+        <p>We can delete a branch by using the command:</p>
+        <code>
+          <pre>$ git branch -d &lt;branch-name&gt;</pre>
+        </code>
+        <p>
+          <strong>To delete a branch, we should not be in that branch</strong>,
+          so before deleting branch we need to switch to another branch. Also if
+          we want to delete a branch which is not fully merged, we get a warning
+          saying that the branch is not fully merged and if we still want to
+          delete it we can use the command
+          <span class="inline-code">git branch -D &lt;branch-name&gt;</span>.
+          This command allows us to delete a branch irrespective of its merged
+          status.
+        </p>
+        <p>We can rename a branch by using the command:</p>
+        <code>
+          <pre>$ git branch -m &lt;branch-name&gt;</pre>
+        </code>
+        <p><strong>To rename a branch we should be ON that branch</strong></p>
+      </section>
+      <section class="main-section" id="References">
+        <header id="references">
+          <h2>References</h2>
+        </header>
+        <p>
+          For a complete reference and detailed documentation on Git you can go
+          to the
+          <a
+            href="https://git-scm.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Official Documentation Website<svg
+              fill="#000000"
+              width="16px"
+              height="16px"
+              viewBox="-5.5 0 32 32"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>external</title>
+              <path
+                d="M15.656 8.5l-10.438 10.5 2.188 2.219 10.469-10.469 1.938 1.906c0.531 0.531 1 0.375 1-0.438v-5.656c0-0.5-0.438-0.969-0.969-0.969h-5.656c-0.813 0-1 0.469-0.469 1zM16.813 23.031v-7.094h2.375v7.906c0 1.406-1.156 2.563-2.563 2.563h-14.063c-1.406 0-2.563-1.156-2.563-2.563v-14.094c0-1.406 1.156-2.563 2.563-2.531h8.656v2.375h-7.844c-0.5 0-0.969 0.469-0.969 0.969v12.469c0 0.5 0.469 0.969 0.969 0.969h12.469c0.5 0 0.969-0.469 0.969-0.969z"
+              ></path></svg></a
+          >.
+        </p>
+      </section>
+
+      <!-- Navbar -->
+
+      <nav id="navbar">
+        <header>
+          <h1>Git Documentation</h1>
+        </header>
+        <ul>
+          <li><a class="nav-link" href="#What_is_Git">What is Git</a></li>
+          <li><a class="nav-link" href="#Git_vs_Github">Git vs Github</a></li>
+          <li>
+            <a class="nav-link" href="#Creating_Git_Repo">Creating Git Repo</a>
+          </li>
+          <li>
+            <a class="nav-link" href="#Git_Commit">Git Commit</a>
+          </li>
+          <li>
+            <a class="nav-link" href="#Amending_Commits">Amending Commits</a>
+          </li>
+          <li><a class="nav-link" href="#Branching">Branching</a></li>
+          <li>
+            <a class="nav-link" href="#Master_or_Main">Master or Main</a>
+          </li>
+          <li>
+            <a class="nav-link" href="#Viewing_Branches">Viewing Branches</a>
+          </li>
+          <li>
+            <a class="nav-link" href="#Creating_and_Switching_Branches"
+              >Creating and Switching Branches</a
+            >
+          </li>
+          <li>
+            <a class="nav-link" href="#Deleting_and_Renaming_Branches"
+              >Deleting and Renaming Branches</a
+            >
+          </li>
+          <li>
+            <a class="nav-link" href="#References">References</a>
+          </li>
+        </ul>
+      </nav>
+    </main>
+  </body>
+</html>
